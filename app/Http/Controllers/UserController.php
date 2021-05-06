@@ -60,7 +60,7 @@ class UserController extends Controller
     }
 
     public function all() {
-        return User::all();
+        return User::all()->except(\Auth::id());
     }
 
     /**
