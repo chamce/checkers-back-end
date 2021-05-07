@@ -38,10 +38,22 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function conversation_users()
+    public function isUser1InConvo()
     {
-        // this user record has many conversation_user records where it is the user
-        return $this->hasMany(ConversationUser::class, 'user_id', 'id');
+        // this user record has many conversation records where it is user_1
+        return $this->hasMany(Conversation::class, 'user_1_id', 'id');
+    }
+
+    public function isUser2InConvo()
+    {
+        // this user record has many conversation records where it is user_2
+        return $this->hasMany(Conversation::class, 'user_2_id', 'id');
+    }
+
+    public function messages()
+    {
+        // this user record has many message records
+        return $this->hasMany(Message::class, 'sender_id', 'id');
     }
 
     // public function game_players()

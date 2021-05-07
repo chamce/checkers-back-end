@@ -12,11 +12,17 @@ class Message extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-    protected $fillable = [ 'conversation_user_id', 'content' ];
+    protected $fillable = [ 'conversation_id', 'sender_id', 'text' ];
 
-    public function conversation_user()
+    public function conversation()
     {
-        // this message record belongs to one conversation_user
-        return $this->belongsTo(ConversationUser::class, 'conversation_user_id', 'id');
+        // this message record belongs to one conversation
+        return $this->belongsTo(Conversation::class, 'conversation_id', 'id');
+    }
+
+    public function sender()
+    {
+        // this message record belongs to one sender
+        return $this->belongsTo(User::class, 'sender_id', 'id');
     }
 }

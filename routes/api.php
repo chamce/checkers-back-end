@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +28,9 @@ Route::prefix('auth')->group(function () {
         Route::get('/logout', [UserController::class, 'logout']);
         // get all usernames
         Route::get('/allusers', [UserController::class, 'all']);
+        // create conversation
+        Route::post('/createconvo', [ConversationController::class, 'create']);
+        // create message
+        Route::post('/createmessage', [MessageController::class, 'create']);
     });
 });
