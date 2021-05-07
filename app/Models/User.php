@@ -38,21 +38,27 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function game_players()
+    public function conversation_users()
     {
-        // this user has many game_player records where they are the player
-        return $this->hasMany(Game_player::class, 'player_id', 'id');
+        // this user record has many conversation_user records where it is the user
+        return $this->hasMany(ConversationUser::class, 'user_id', 'id');
     }
 
-    public function turn()
-    {
-        // this user has many game records where they have next turn
-        return $this->belongsTo(Game::class, 'turn_id', 'id');
-    }
+    // public function game_players()
+    // {
+    //     // this user has many game_player records where they are the player
+    //     return $this->hasMany(Game_player::class, 'player_id', 'id');
+    // }
 
-    public function winner()
-    {
-        // this user has many game records where they are the winner
-        return $this->belongsTo(Game::class, 'winner_id', 'id');
-    }
+    // public function turn()
+    // {
+    //     // this user has many game records where they have next turn
+    //     return $this->belongsTo(Game::class, 'turn_id', 'id');
+    // }
+
+    // public function winner()
+    // {
+    //     // this user has many game records where they are the winner
+    //     return $this->belongsTo(Game::class, 'winner_id', 'id');
+    // }
 }
