@@ -24,7 +24,6 @@ class ConversationController extends Controller
      */
     public function create(Request $request)
     {
-        // get names in query?
         $myID = $request->user()->id;
         $theirID = $request->them;
         $query1 = Conversation::where('user_1_id', $myID)->where('user_2_id', $theirID)->get();

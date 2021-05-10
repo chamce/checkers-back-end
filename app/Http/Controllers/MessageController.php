@@ -22,9 +22,18 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-
+        $senderID = $request->user()->id;
+        $conversationID = $request->conversation;
+        $text = $request->text;
+        $message = new Message;
+        $message->sender_id = $senderID;
+        $message->conversation_id = $conversationID;
+        $message->text = $text;
+        $message->save();
+        $query = $this->show($message);
+        return $query;
     }
 
     /**
