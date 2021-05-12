@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Events\MessageSent;
 
 class MessageController extends Controller
 {
@@ -33,6 +34,7 @@ class MessageController extends Controller
         $message->text = $text;
         $message->save();
         $query = $this->show($message);
+        event(new MessageSent($conversationID, $message));
         return $query;
     }
 

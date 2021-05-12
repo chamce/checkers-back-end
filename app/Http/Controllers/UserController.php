@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NewUser;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
         /**Take note of this: Your user authentication access token is generated here **/
         $data['token'] =  $user->createToken('Checkers')->accessToken;
         $data['user_data'] = $user;
-
+        event(new NewUser($user));
         return response(['data' => $data, 'message' => 'Account created successfully!', 'status' => true]);
     }
 
